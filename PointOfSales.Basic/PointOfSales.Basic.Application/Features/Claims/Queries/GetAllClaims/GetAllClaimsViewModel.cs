@@ -4,7 +4,7 @@ using System.Text;
 
 namespace PointOfSales.Basic.Application.Features.Claims.Queries.GetAllClaims
 {
-    public class GetAllClaimsViewModel
+    public class GetAllLineItemsViewModel
     {
         public int Id { get; set; }
         public string Title { get; set; }

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace PointOfSales.Basic.Application.Features.Claims.Commands.UpdateClaim
 {
-    public class UpdateClaimCommand : IRequest<Response<int>>
+    public class UpdateLineItemCommand : IRequest<Response<int>>
     {
         public int Id { get; set; }
         public string Title { get; set; }
@@ -24,14 +24,16 @@ namespace PointOfSales.Basic.Application.Features.Claims.Commands.UpdateClaim
         public string RequesterComments { get; set; }
         public string ApproverComments { get; set; }
         public string FinanceComments { get; set; }
-        public class UpdateClaimCommandHandler : IRequestHandler<UpdateClaimCommand, Response<int>>
+
+
+        public class UpdateClaimCommandHandler : IRequestHandler<UpdateLineItemCommand, Response<int>>
         {
             private readonly IClaimRepositoryAsync _claimRepository;
             public UpdateClaimCommandHandler(IClaimRepositoryAsync claimRepository)
             {
                 _claimRepository = claimRepository;
             }
-            public async Task<Response<int>> Handle(UpdateClaimCommand command, CancellationToken cancellationToken)
+            public async Task<Response<int>> Handle(UpdateLineItemCommand command, CancellationToken cancellationToken)
             {
                 var claim = await _claimRepository.GetByIdAsync(command.Id);
 
@@ -50,4 +52,5 @@ namespace PointOfSales.Basic.Application.Features.Claims.Commands.UpdateClaim
             }
         }
     }
+
 }

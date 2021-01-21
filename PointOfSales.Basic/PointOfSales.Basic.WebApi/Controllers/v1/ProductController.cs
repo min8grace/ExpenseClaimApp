@@ -16,6 +16,7 @@ using System.Threading.Tasks;
 
 namespace PointOfSales.Basic.WebApi.Controllers.v1
 {
+    [AllowAnonymous]
     [ApiVersion("1.0")]
     public class ProductController : BaseApiController
     {

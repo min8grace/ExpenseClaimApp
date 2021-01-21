@@ -7,21 +7,25 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{ACFA86
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebApi", "WebApi", "{E6869ADF-BC59-44D4-B8E0-5B26430176A8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PointOfSales.Basic.WebApi", "PointOfSales.Basic\PointOfSales.Basic.WebApi\PointOfSales.Basic.WebApi.csproj", "{08C8A301-A55A-48CF-B54A-ED9FB8BEBB3A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PointOfSales.Basic.WebApi", "PointOfSales.Basic\PointOfSales.Basic.WebApi\PointOfSales.Basic.WebApi.csproj", "{08C8A301-A55A-48CF-B54A-ED9FB8BEBB3A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{7DD90CD5-8EB7-42DF-9928-B31B126904EB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PointOfSales.Basic.Application", "PointOfSales.Basic\PointOfSales.Basic.Application\PointOfSales.Basic.Application.csproj", "{1CD418D8-D5E6-4BEB-84ED-0A350D37B3B3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PointOfSales.Basic.Application", "PointOfSales.Basic\PointOfSales.Basic.Application\PointOfSales.Basic.Application.csproj", "{1CD418D8-D5E6-4BEB-84ED-0A350D37B3B3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PointOfSales.Basic.Domain", "PointOfSales.Basic\PointOfSales.Basic.Domain\PointOfSales.Basic.Domain.csproj", "{CAC6D6E4-1EDA-4F8A-8E71-149745355675}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PointOfSales.Basic.Domain", "PointOfSales.Basic\PointOfSales.Basic.Domain\PointOfSales.Basic.Domain.csproj", "{CAC6D6E4-1EDA-4F8A-8E71-149745355675}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{3B200900-2B9A-404E-BAC3-51AB4C19E023}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PointOfSales.Basic.Infrastructure.Identity", "PointOfSales.Basic\PointOfSales.Basic.Infrastructure.Identity\PointOfSales.Basic.Infrastructure.Identity.csproj", "{44CB751F-2AFA-485B-A5FA-CBBC8767AA1A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PointOfSales.Basic.Infrastructure.Identity", "PointOfSales.Basic\PointOfSales.Basic.Infrastructure.Identity\PointOfSales.Basic.Infrastructure.Identity.csproj", "{44CB751F-2AFA-485B-A5FA-CBBC8767AA1A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PointOfSales.Basic.Infrastructure.Persistence", "PointOfSales.Basic\PointOfSales.Basic.Infrastructure.Persistence\PointOfSales.Basic.Infrastructure.Persistence.csproj", "{5C98AE5A-F92E-487C-93D7-C31A6D9BA508}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PointOfSales.Basic.Infrastructure.Persistence", "PointOfSales.Basic\PointOfSales.Basic.Infrastructure.Persistence\PointOfSales.Basic.Infrastructure.Persistence.csproj", "{5C98AE5A-F92E-487C-93D7-C31A6D9BA508}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PointOfSales.Basic.Infrastructure.Shared", "PointOfSales.Basic\PointOfSales.Basic.Infrastructure.Shared\PointOfSales.Basic.Infrastructure.Shared.csproj", "{2396D98B-C9E8-44EC-9815-5017C90EDCE0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PointOfSales.Basic.Infrastructure.Shared", "PointOfSales.Basic\PointOfSales.Basic.Infrastructure.Shared\PointOfSales.Basic.Infrastructure.Shared.csproj", "{2396D98B-C9E8-44EC-9815-5017C90EDCE0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentations", "Presentations", "{1E6C9A01-9399-4C00-8E8C-BA9ECECB5CD2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorApp", "BlazorApp\BlazorApp.csproj", "{CAD0550F-8C92-4195-826C-89AB9BCE9E7D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,6 +57,10 @@ Global
 		{2396D98B-C9E8-44EC-9815-5017C90EDCE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2396D98B-C9E8-44EC-9815-5017C90EDCE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2396D98B-C9E8-44EC-9815-5017C90EDCE0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CAD0550F-8C92-4195-826C-89AB9BCE9E7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CAD0550F-8C92-4195-826C-89AB9BCE9E7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CAD0550F-8C92-4195-826C-89AB9BCE9E7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CAD0550F-8C92-4195-826C-89AB9BCE9E7D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -67,6 +75,8 @@ Global
 		{44CB751F-2AFA-485B-A5FA-CBBC8767AA1A} = {3B200900-2B9A-404E-BAC3-51AB4C19E023}
 		{5C98AE5A-F92E-487C-93D7-C31A6D9BA508} = {3B200900-2B9A-404E-BAC3-51AB4C19E023}
 		{2396D98B-C9E8-44EC-9815-5017C90EDCE0} = {3B200900-2B9A-404E-BAC3-51AB4C19E023}
+		{1E6C9A01-9399-4C00-8E8C-BA9ECECB5CD2} = {ACFA861B-BF8B-4FFE-A95B-3BFB40D1B745}
+		{CAD0550F-8C92-4195-826C-89AB9BCE9E7D} = {1E6C9A01-9399-4C00-8E8C-BA9ECECB5CD2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E29972C4-021D-4043-88D4-F3007B595346}

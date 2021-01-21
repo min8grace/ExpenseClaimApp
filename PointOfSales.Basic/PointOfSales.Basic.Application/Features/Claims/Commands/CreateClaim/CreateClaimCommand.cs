@@ -13,7 +13,6 @@ namespace PointOfSales.Basic.Application.Features.Claims.Commands.CreateClaim
 {
     public class CreateClaimCommand : IRequest<Response<int>>
     {
-        public int Id { get; set; }
         public string Title { get; set; }
         public int Requester { get; set; }
         public int Approver { get; set; }

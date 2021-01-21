@@ -5,7 +5,7 @@ using System.Text;
 
 namespace PointOfSales.Basic.Application.Features.Claims.Queries.GetAllClaims
 {
-    public class GetAllClaimsParameter : RequestParameter
+    public class GetAllLineItemsParameter : RequestParameter
     {
     }
 }

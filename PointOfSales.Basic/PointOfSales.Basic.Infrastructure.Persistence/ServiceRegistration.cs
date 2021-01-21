@@ -31,6 +31,8 @@ namespace PointOfSales.Basic.Infrastructure.Persistence
             #region Repositories
             services.AddTransient(typeof(IGenericRepositoryAsync<>), typeof(GenericRepositoryAsync<>));
             services.AddTransient<IProductRepositoryAsync, ProductRepositoryAsync>();
+            services.AddTransient<IClaimRepositoryAsync, ClaimRepositoryAsync>();
+            services.AddTransient<ILineItemRepositoryAsync, LineItemRepositoryAsync>();
             #endregion
         }
     }

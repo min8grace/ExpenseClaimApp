@@ -1,20 +1,18 @@
-﻿using Microsoft.EntityFrameworkCore;
-using PointOfSales.Basic.Application.Interfaces.Repositories;
+﻿using PointOfSales.Basic.Application.Interfaces.Repositories;
 using PointOfSales.Basic.Domain.Entities;
 using PointOfSales.Basic.Infrastructure.Persistence.Contexts;
 using PointOfSales.Basic.Infrastructure.Persistence.Repository;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace PointOfSales.Basic.Infrastructure.Persistence.Repositories
 {
-    public class ClaimRepositoryAsync : GenericRepositoryAsync<Claim>, IClaimRepositoryAsync
+    public class LineItemRepositoryAsync : GenericRepositoryAsync<ClaimLineItem>, ILineItemRepositoryAsync
     {
         //private readonly DbSet<Claim> _claim;
 
-        public ClaimRepositoryAsync(ApplicationDbContext dbContext) : base(dbContext)
+        public LineItemRepositoryAsync(ApplicationDbContext dbContext) : base(dbContext)
         {
             //_claim = dbContext.Set<Claim>();
         }
