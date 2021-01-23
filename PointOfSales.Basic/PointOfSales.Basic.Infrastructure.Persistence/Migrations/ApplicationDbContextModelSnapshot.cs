@@ -15,7 +15,7 @@ namespace PointOfSales.Basic.Infrastructure.Persistence.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.7")
+                .HasAnnotation("ProductVersion", "3.1.10")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -103,23 +103,37 @@ namespace PointOfSales.Basic.Infrastructure.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Claims");
+                    b.ToTable("Claim");
                 });
 
-            modelBuilder.Entity("PointOfSales.Basic.Domain.Entities.ClaimLineItem", b =>
+            modelBuilder.Entity("PointOfSales.Basic.Domain.Entities.Currency", b =>
+                {
+                    b.Property<string>("Code")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Symbol")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Code");
+
+                    b.ToTable("Currency");
+                });
+
+            modelBuilder.Entity("PointOfSales.Basic.Domain.Entities.LineItem", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    b.Property<int>("ClaimId")
+                        .HasColumnType("int");
 
                     b.Property<decimal>("Amount")
                         .HasColumnType("decimal(18,6)");
 
                     b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ClaimId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("Created")
@@ -155,7 +169,7 @@ namespace PointOfSales.Basic.Infrastructure.Persistence.Migrations
                     b.Property<decimal>("USDAmount")
                         .HasColumnType("decimal(18,6)");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id", "ClaimId");
 
                     b.HasIndex("CategoryId");
 
@@ -163,23 +177,7 @@ namespace PointOfSales.Basic.Infrastructure.Persistence.Migrations
 
                     b.HasIndex("CurrencyCode");
 
-                    b.ToTable("ClaimLineItem");
-                });
-
-            modelBuilder.Entity("PointOfSales.Basic.Domain.Entities.Currency", b =>
-                {
-                    b.Property<string>("Code")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Symbol")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Code");
-
-                    b.ToTable("Currency");
+                    b.ToTable("LineItem");
                 });
 
             modelBuilder.Entity("PointOfSales.Basic.Domain.Entities.Product", b =>
@@ -218,7 +216,7 @@ namespace PointOfSales.Basic.Infrastructure.Persistence.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("PointOfSales.Basic.Domain.Entities.ClaimLineItem", b =>
+            modelBuilder.Entity("PointOfSales.Basic.Domain.Entities.LineItem", b =>
                 {
                     b.HasOne("PointOfSales.Basic.Domain.Entities.Category", "Category")
                         .WithMany("ClaimLineItems")
@@ -227,7 +225,7 @@ namespace PointOfSales.Basic.Infrastructure.Persistence.Migrations
                         .IsRequired();
 
                     b.HasOne("PointOfSales.Basic.Domain.Entities.Claim", "Claim")
-                        .WithMany("ClaimLineItem")
+                        .WithMany("LineItems")
                         .HasForeignKey("ClaimId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

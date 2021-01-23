@@ -7,6 +7,8 @@ using PointOfSales.Basic.Application.Features.Claims.Commands.UpdateClaim;
 using PointOfSales.Basic.Application.Features.Claims.Queries.GetAllClaims;
 using PointOfSales.Basic.Application.Features.Claims.Queries.GetClaimById;
 using PointOfSales.Basic.Application.Features.LineItem.Commands.CreateLineItem;
+using PointOfSales.Basic.Application.Features.LineItems.Queries.GetAllLineItems;
+using PointOfSales.Basic.Application.Features.LineItems.Queries.GetLineItemById;
 using PointOfSales.Basic.Application.Filters;
 using System;
 using System.Collections.Generic;

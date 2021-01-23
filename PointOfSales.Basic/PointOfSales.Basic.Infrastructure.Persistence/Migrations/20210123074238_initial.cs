@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PointOfSales.Basic.Infrastructure.Persistence.Migrations
 {
-    public partial class initial2 : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -26,7 +26,7 @@ namespace PointOfSales.Basic.Infrastructure.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Claims",
+                name: "Claim",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -49,7 +49,7 @@ namespace PointOfSales.Basic.Infrastructure.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Claims", x => x.Id);
+                    table.PrimaryKey("PK_Claim", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -66,17 +66,16 @@ namespace PointOfSales.Basic.Infrastructure.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ClaimLineItem",
+                name: "LineItem",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<int>(nullable: false),
+                    ClaimId = table.Column<int>(nullable: false),
                     CreatedBy = table.Column<string>(nullable: true),
                     Created = table.Column<DateTime>(nullable: false),
                     LastModifiedBy = table.Column<string>(nullable: true),
                     LastModified = table.Column<DateTime>(nullable: true),
                     Title = table.Column<string>(nullable: true),
-                    ClaimId = table.Column<int>(nullable: false),
                     CategoryId = table.Column<int>(nullable: false),
                     Payee = table.Column<string>(nullable: true),
                     Date = table.Column<DateTime>(nullable: false),
@@ -88,21 +87,21 @@ namespace PointOfSales.Basic.Infrastructure.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ClaimLineItem", x => x.Id);
+                    table.PrimaryKey("PK_LineItem", x => new { x.Id, x.ClaimId });
                     table.ForeignKey(
-                        name: "FK_ClaimLineItem_Category_CategoryId",
+                        name: "FK_LineItem_Category_CategoryId",
                         column: x => x.CategoryId,
                         principalTable: "Category",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ClaimLineItem_Claims_ClaimId",
+                        name: "FK_LineItem_Claim_ClaimId",
                         column: x => x.ClaimId,
-                        principalTable: "Claims",
+                        principalTable: "Claim",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ClaimLineItem_Currency_CurrencyCode",
+                        name: "FK_LineItem_Currency_CurrencyCode",
                         column: x => x.CurrencyCode,
                         principalTable: "Currency",
                         principalColumn: "Code",
@@ -110,31 +109,31 @@ namespace PointOfSales.Basic.Infrastructure.Persistence.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_ClaimLineItem_CategoryId",
-                table: "ClaimLineItem",
+                name: "IX_LineItem_CategoryId",
+                table: "LineItem",
                 column: "CategoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ClaimLineItem_ClaimId",
-                table: "ClaimLineItem",
+                name: "IX_LineItem_ClaimId",
+                table: "LineItem",
                 column: "ClaimId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ClaimLineItem_CurrencyCode",
-                table: "ClaimLineItem",
+                name: "IX_LineItem_CurrencyCode",
+                table: "LineItem",
                 column: "CurrencyCode");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "ClaimLineItem");
+                name: "LineItem");
 
             migrationBuilder.DropTable(
                 name: "Category");
 
             migrationBuilder.DropTable(
-                name: "Claims");
+                name: "Claim");
 
             migrationBuilder.DropTable(
                 name: "Currency");

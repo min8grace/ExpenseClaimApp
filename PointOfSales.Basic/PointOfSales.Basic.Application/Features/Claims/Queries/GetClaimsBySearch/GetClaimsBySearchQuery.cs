@@ -12,21 +12,19 @@ using System.Threading.Tasks;
 
 namespace PointOfSales.Basic.Application.Features.Claims.Queries.GetClaimById
 {
-    public class GetClaimByIdQuery : IRequest<Response<Claim>>
+    public class GetClaimsBySearchQuery : IRequest<Response<Claim>>
     {
         public int Id { get; set; }
-        public class GetClaimByIdQueryHandler : IRequestHandler<GetClaimByIdQuery, Response<Claim>>
+        public class GetClaimsBySearchQueryHandler : IRequestHandler<GetClaimsBySearchQuery, Response<Claim>>
         {
             private readonly IClaimRepositoryAsync _claimRepository;
-            public GetClaimByIdQueryHandler(IClaimRepositoryAsync claimRepository)
+            public GetClaimsBySearchQueryHandler(IClaimRepositoryAsync claimRepository)
             {
                 _claimRepository = claimRepository;
             }
-            public async Task<Response<Claim>> Handle(GetClaimByIdQuery query, CancellationToken cancellationToken)
+            public async Task<Response<Claim>> Handle(GetClaimsBySearchQuery query, CancellationToken cancellationToken)
             {
-                //var claim = await _claimRepository.GetByIdAsync(query.Id);
-                var claim = await _claimRepository.GetClaimById(query.Id);
-
+                var claim = await _claimRepository.GetByIdAsync(query.Id);
                 if (claim == null) throw new ApiException($"Claim Not Found.");
                 return new Response<Claim>(claim);
             }

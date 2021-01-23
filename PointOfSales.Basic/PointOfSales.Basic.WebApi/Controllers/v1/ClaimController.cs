@@ -22,10 +22,10 @@ namespace PointOfSales.Basic.WebApi.Controllers.v1
     {
         // GET: api/<controller>
         [HttpGet]
-        public async Task<ActionResult<List<GetAllLineItemsViewModel>>> Get([FromQuery] GetAllClaimsParameter filter)
+        public async Task<ActionResult<List<GetAllClaimsViewModel>>> Get([FromQuery] GetAllClaimsParameter filter)
         {
            
-            var response = (await Mediator.Send(new GetAllLineItemsQuery() { PageSize = filter.PageSize, PageNumber = filter.PageNumber })).Data;
+            var response = (await Mediator.Send(new GetAllClaimsQuery() { PageSize = filter.PageSize, PageNumber = filter.PageNumber })).Data;
 
             return response.ToList();
             //return Ok(await Mediator.Send(new GetAllClaimsQuery() { PageSize = filter.PageSize, PageNumber = filter.PageNumber }));
@@ -35,7 +35,7 @@ namespace PointOfSales.Basic.WebApi.Controllers.v1
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            return Ok(await Mediator.Send(new GetLineItemByIdQuery { Id = id }));
+            return Ok(await Mediator.Send(new GetClaimByIdQuery { Id = id }));
         }
 
         // POST api/<controller>
@@ -65,5 +65,7 @@ namespace PointOfSales.Basic.WebApi.Controllers.v1
         {
             return Ok(await Mediator.Send(new DeleteLineItemByIdCommand { Id = id }));
         }
+
+
     }
 }

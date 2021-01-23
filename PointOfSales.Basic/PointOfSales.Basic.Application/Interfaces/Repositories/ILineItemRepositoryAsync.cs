@@ -5,7 +5,7 @@ using System.Text;
 
 namespace PointOfSales.Basic.Application.Interfaces.Repositories
 {
-    public interface ILineItemRepositoryAsync : IGenericRepositoryAsync<ClaimLineItem>
+    public interface ILineItemRepositoryAsync : IGenericRepositoryAsync<LineItem>
     {
     }
 }

@@ -2,6 +2,7 @@
 using PointOfSales.Basic.Application.Features.Claims.Commands.CreateClaim;
 using PointOfSales.Basic.Application.Features.Claims.Queries.GetAllClaims;
 using PointOfSales.Basic.Application.Features.LineItem.Commands.CreateLineItem;
+using PointOfSales.Basic.Application.Features.LineItems.Queries.GetAllLineItems;
 using PointOfSales.Basic.Application.Features.Products.Commands.CreateProduct;
 using PointOfSales.Basic.Application.Features.Products.Queries.GetAllProducts;
 using PointOfSales.Basic.Domain.Entities;
@@ -19,12 +20,12 @@ namespace PointOfSales.Basic.Application.Mappings
             CreateMap<CreateProductCommand, Product>();
             CreateMap<GetAllProductsQuery, GetAllProductsParameter>();
 
-            CreateMap<Claim, GetAllLineItemsViewModel>().ReverseMap();
+            CreateMap<Claim, GetAllClaimsViewModel>().ReverseMap();
             CreateMap<CreateClaimCommand, Claim>();
-            CreateMap<GetAllLineItemsQuery, GetAllClaimsParameter>();
+            CreateMap<GetAllClaimsQuery, GetAllClaimsParameter>();
 
-            CreateMap<ClaimLineItem, GetAllLineItemsViewModel>().ReverseMap();
-            CreateMap<CreateLineItemCommand, ClaimLineItem>();
+            CreateMap<LineItem, GetAllLineItemsViewModel>().ReverseMap();
+            CreateMap<CreateLineItemCommand, LineItem>();
             CreateMap<GetAllLineItemsQuery, GetAllLineItemsParameter>();
 
         }

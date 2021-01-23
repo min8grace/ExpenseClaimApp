@@ -25,6 +25,9 @@ namespace PointOfSales.Basic.Infrastructure.Persistence.Contexts
         }
         public DbSet<Product> Products { get; set; }
         public DbSet<Claim> Claims { get; set; }
+        public DbSet<LineItem> LineItems { get; set; }
+        public DbSet<Currency> Currencies { get; set; }
+        public DbSet<Category> Categories { get; set; }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
@@ -46,6 +49,14 @@ namespace PointOfSales.Basic.Infrastructure.Persistence.Contexts
         }
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.Entity<Claim>().ToTable("Claim");
+            builder.Entity<LineItem>().ToTable("LineItem");
+            builder.Entity<Currency>().ToTable("Currency");
+            builder.Entity<Category>().ToTable("Category");
+
+            builder.Entity<LineItem>()
+                .HasKey(c => new { c.Id, c.ClaimId });
+
             //All Decimals will have 18,6 Range
             foreach (var property in builder.Model.GetEntityTypes()
             .SelectMany(t => t.GetProperties())

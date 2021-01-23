@@ -11,12 +11,12 @@ using System.Threading.Tasks;
 
 namespace PointOfSales.Basic.Application.Features.Claims.Queries.GetAllClaims
 {
-    public class GetAllLineItemsQuery : IRequest<PagedResponse<IEnumerable<GetAllLineItemsViewModel>>>
+    public class GetAllClaimsQuery : IRequest<PagedResponse<IEnumerable<GetAllClaimsViewModel>>>
     {
         public int PageNumber { get; set; }
         public int PageSize { get; set; }
     }
-    public class GetAllClaimsQueryHandler : IRequestHandler<GetAllLineItemsQuery, PagedResponse<IEnumerable<GetAllLineItemsViewModel>>>
+    public class GetAllClaimsQueryHandler : IRequestHandler<GetAllClaimsQuery, PagedResponse<IEnumerable<GetAllClaimsViewModel>>>
     {
         private readonly IClaimRepositoryAsync _claimRepository;
         private readonly IMapper _mapper;
@@ -26,12 +26,12 @@ namespace PointOfSales.Basic.Application.Features.Claims.Queries.GetAllClaims
             _mapper = mapper;
         }
 
-        public async Task<PagedResponse<IEnumerable<GetAllLineItemsViewModel>>> Handle(GetAllLineItemsQuery request, CancellationToken cancellationToken)
+        public async Task<PagedResponse<IEnumerable<GetAllClaimsViewModel>>> Handle(GetAllClaimsQuery request, CancellationToken cancellationToken)
         {
             var validFilter = _mapper.Map<GetAllClaimsParameter>(request);
             var claim = await _claimRepository.GetPagedReponseAsync(validFilter.PageNumber, validFilter.PageSize);
-            var claimViewModel = _mapper.Map<IEnumerable<GetAllLineItemsViewModel>>(claim);
-            return new PagedResponse<IEnumerable<GetAllLineItemsViewModel>>(claimViewModel, validFilter.PageNumber, validFilter.PageSize);
+            var claimViewModel = _mapper.Map<IEnumerable<GetAllClaimsViewModel>>(claim);
+            return new PagedResponse<IEnumerable<GetAllClaimsViewModel>>(claimViewModel, validFilter.PageNumber, validFilter.PageSize);
         }
     }
 }

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace PointOfSales.Basic.Domain.Entities
 {
-    public class ClaimLineItem : AuditableBaseEntity
+    public class LineItem : AuditableBaseEntity
     {
         public string Title { get; set; }
         public int ClaimId { get; set; }

@@ -19,7 +19,7 @@ namespace PointOfSales.Basic.Domain.Entities
         public string ApproverComments { get; set; }
         public string FinanceComments { get; set; }
 
-        public virtual ICollection<ClaimLineItem> ClaimLineItem { get; set; }
+        public virtual ICollection<LineItem> LineItems { get; set; }
     }
 }
 

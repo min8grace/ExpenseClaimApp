@@ -12,21 +12,21 @@ using System.Threading.Tasks;
 
 namespace PointOfSales.Basic.Application.Features.LineItems.Queries.GetLineItemById
 {
-    public class GetLineItemByIdQuery : IRequest<Response<ClaimLineItem>>
+    public class GetLineItemByIdQuery : IRequest<Response<Domain.Entities.LineItem>>
     {
         public int Id { get; set; }
-        public class GetLineItemByIdQueryHandler : IRequestHandler<GetLineItemByIdQuery, Response<ClaimLineItem>>
+        public class GetLineItemByIdQueryHandler : IRequestHandler<GetLineItemByIdQuery, Response<Domain.Entities.LineItem>>
         {
             private readonly ILineItemRepositoryAsync _lineItemRepository;
             public GetLineItemByIdQueryHandler(ILineItemRepositoryAsync lineItemRepository)
             {
                 _lineItemRepository = lineItemRepository;
             }
-            public async Task<Response<ClaimLineItem>> Handle(GetLineItemByIdQuery query, CancellationToken cancellationToken)
+            public async Task<Response<Domain.Entities.LineItem>> Handle(GetLineItemByIdQuery query, CancellationToken cancellationToken)
             {
                 var lineItem = await _lineItemRepository.GetByIdAsync(query.Id);
                 if (lineItem == null) throw new ApiException($"LineItem Not Found.");
-                return new Response<ClaimLineItem>(lineItem);
+                return new Response<Domain.Entities.LineItem>(lineItem);
             }
         }
     }

@@ -8,7 +8,7 @@ using System.Text;
 
 namespace PointOfSales.Basic.Infrastructure.Persistence.Repositories
 {
-    public class LineItemRepositoryAsync : GenericRepositoryAsync<ClaimLineItem>, ILineItemRepositoryAsync
+    public class LineItemRepositoryAsync : GenericRepositoryAsync<LineItem>, ILineItemRepositoryAsync
     {
         //private readonly DbSet<Claim> _claim;
 

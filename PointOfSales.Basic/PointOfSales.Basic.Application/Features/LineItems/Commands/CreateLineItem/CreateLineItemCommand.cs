@@ -24,27 +24,27 @@ namespace PointOfSales.Basic.Application.Features.LineItem.Commands.CreateLineIt
         public string CurrencyCode { get; set; }
         public Decimal USDAmount { get; set; }
 
-        public byte[] Receipt { get; set; }//image
+        //public byte[] Receipt { get; set; }//image
 
-        public virtual Claim Claim { get; set; }
-        public virtual Category Category { get; set; }
-        public virtual Currency Currency { get; set; }
+        //public virtual Claim Claim { get; set; }
+        //public virtual Category Category { get; set; }
+        //public virtual Currency Currency { get; set; }
     }
     public class CreateLineItemCommandHandler : IRequestHandler<CreateLineItemCommand, Response<int>>
     {
-        private readonly IClaimRepositoryAsync _claimRepository;
+        private readonly ILineItemRepositoryAsync _lineItemRepository;
         private readonly IMapper _mapper;
-        public CreateLineItemCommandHandler(IClaimRepositoryAsync claimRepository, IMapper mapper)
+        public CreateLineItemCommandHandler(ILineItemRepositoryAsync lineItemRepository, IMapper mapper)
         {
-            _claimRepository = claimRepository;
+            _lineItemRepository = lineItemRepository;
             _mapper = mapper;
         }
 
         public async Task<Response<int>> Handle(CreateLineItemCommand request, CancellationToken cancellationToken)
         {
-            var claim = _mapper.Map<Claim>(request);
-            await _claimRepository.AddAsync(claim);
-            return new Response<int>(claim.Id);
+            var lineItem = _mapper.Map<Domain.Entities.LineItem>(request);
+            await _lineItemRepository.AddAsync(lineItem);
+            return new Response<int>(lineItem.Id);
         }
     }
 }

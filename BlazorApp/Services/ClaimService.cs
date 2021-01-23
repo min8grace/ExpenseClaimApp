@@ -24,11 +24,35 @@ namespace BlazorApp.Services
         private const int apiversion = 1;
 
 
-
-        public async  Task<List<GetAllLineItemsViewModel>> GetClaims()
+        public async  Task<List<GetAllClaimsViewModel>> GetClaims()
         {
 
-            return await httpClient.GetJsonAsync<List<GetAllLineItemsViewModel>>($"api/v{apiversion}/Claim");
+            return await httpClient.GetJsonAsync<List<GetAllClaimsViewModel>>($"api/v{apiversion}/Claim");
+        }
+
+        public async Task<Claim> GetClaimById(int id)
+        {
+            return await httpClient.GetJsonAsync<Claim>($"api/v{apiversion}/Claim");
+        }
+
+        public Task<Claim> CreateClaim(Claim newClaim)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Claim> UpdateClaim(Claim updatedClaim)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task DeleteClaim(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IReadOnlyList<Claim>> GetClaimsBySearch(string text)
+        {
+            throw new NotImplementedException();
         }
         // return await httpClient.GetJsonAsync<Claim[]>("api/v1/Claim");
 

@@ -15,32 +15,31 @@ namespace BlazorApp.Pages
         [Inject]
         public IClaimService ClaimService { get; set; }
 
-        public List<GetAllLineItemsViewModel> Claims { get; set; }
+        public List<GetAllClaimsViewModel> Claims { get; set; }
 
-        List<Claim> tempList = new List<Claim>();
-        Claim temp = new Claim {
+        //List<Claim> tempList = new List<Claim>();
 
-            Id = 1,
-            Title = "title",
-            Requester = 10,
-            Approver = 10,
-            SubmitDate = new DateTime(1980, 10, 5),
-            ApprovalDate = new DateTime(1980, 10, 5),
-            ProcessedDate = new DateTime(1980, 10, 5),
-            TotalAmount = 20,
-            Status = "status",
-            RequesterComments = "requesterComments",
-            ApproverComments = "approverComments",
-            FinanceComments = "financeComments"
-        };
+        //Claim temp = new Claim {
+
+        //    Id = 1,
+        //    Title = "title",
+        //    Requester = 10,
+        //    Approver = 10,
+        //    SubmitDate = new DateTime(1980, 10, 5),
+        //    ApprovalDate = new DateTime(1980, 10, 5),
+        //    ProcessedDate = new DateTime(1980, 10, 5),
+        //    TotalAmount = 20,
+        //    Status = "status",
+        //    RequesterComments = "requesterComments",
+        //    ApproverComments = "approverComments",
+        //    FinanceComments = "financeComments"
+        //};
         
 
         protected override async Task OnInitializedAsync()
         {
-            
 
             Claims = (await ClaimService.GetClaims()).ToList();
-            //Claims = tempList;
         }
     }
 }
