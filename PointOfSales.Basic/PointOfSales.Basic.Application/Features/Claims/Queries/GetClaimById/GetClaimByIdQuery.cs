@@ -21,6 +21,7 @@ namespace PointOfSales.Basic.Application.Features.Claims.Queries.GetClaimById
             public GetClaimByIdQueryHandler(IClaimRepositoryAsync claimRepository)
             {
                 _claimRepository = claimRepository;
+                //TEST
             }
             public async Task<Response<Claim>> Handle(GetClaimByIdQuery query, CancellationToken cancellationToken)
             {
