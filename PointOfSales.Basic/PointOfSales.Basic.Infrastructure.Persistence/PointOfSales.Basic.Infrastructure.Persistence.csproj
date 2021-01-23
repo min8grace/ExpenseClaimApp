@@ -6,21 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Migrations\20200627124316_Updates.cs" />
-    <Compile Remove="Migrations\20200627124316_Updates.Designer.cs" />
-    <Compile Remove="Migrations\20200724180907_New.cs" />
-    <Compile Remove="Migrations\20200724180907_New.Designer.cs" />
-    <Compile Remove="Migrations\20210114071320_initial2.cs" />
-    <Compile Remove="Migrations\20210114071320_initial2.Designer.cs" />
-    <Compile Remove="Migrations\20210123031725_lineitem.cs" />
-    <Compile Remove="Migrations\20210123031725_lineitem.Designer.cs" />
-    <Compile Remove="Migrations\20210123072326_changLineItemEntityName.cs" />
-    <Compile Remove="Migrations\20210123072326_changLineItemEntityName.Designer.cs" />
-    <Compile Remove="Migrations\20210123073858_addedDbdetCurrCate.cs" />
-    <Compile Remove="Migrations\20210123073858_addedDbdetCurrCate.Designer.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.7" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.7" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="3.1.7" />

@@ -1,13 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using PointOfSales.Basic.Application.Features.Claims.Commands;
 using PointOfSales.Basic.Application.Features.Claims.Commands.CreateClaim;
 using PointOfSales.Basic.Application.Features.Claims.Commands.DeleteClaimById;
 using PointOfSales.Basic.Application.Features.Claims.Commands.UpdateClaim;
 using PointOfSales.Basic.Application.Features.Claims.Queries.GetAllClaims;
 using PointOfSales.Basic.Application.Features.Claims.Queries.GetClaimById;
-using PointOfSales.Basic.Application.Filters;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -24,7 +21,7 @@ namespace PointOfSales.Basic.WebApi.Controllers.v1
         [HttpGet]
         public async Task<ActionResult<List<GetAllClaimsViewModel>>> Get([FromQuery] GetAllClaimsParameter filter)
         {
-           
+
             var response = (await Mediator.Send(new GetAllClaimsQuery() { PageSize = filter.PageSize, PageNumber = filter.PageNumber })).Data;
 
             return response.ToList();
@@ -49,7 +46,7 @@ namespace PointOfSales.Basic.WebApi.Controllers.v1
         // PUT api/<controller>/5
         [HttpPut("{id}")]
         [Authorize]
-        public async Task<IActionResult> Put(int id, UpdateLineItemCommand command)
+        public async Task<IActionResult> Put(int id, UpdateClaimCommand command)
         {
             if (id != command.Id)
             {
@@ -63,7 +60,7 @@ namespace PointOfSales.Basic.WebApi.Controllers.v1
         [Authorize]
         public async Task<IActionResult> Delete(int id)
         {
-            return Ok(await Mediator.Send(new DeleteLineItemByIdCommand { Id = id }));
+            return Ok(await Mediator.Send(new DeleteClaimByIdCommand { Id = id }));
         }
 
 

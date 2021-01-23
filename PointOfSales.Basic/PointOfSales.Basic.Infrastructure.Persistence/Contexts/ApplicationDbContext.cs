@@ -54,8 +54,8 @@ namespace PointOfSales.Basic.Infrastructure.Persistence.Contexts
             builder.Entity<Currency>().ToTable("Currency");
             builder.Entity<Category>().ToTable("Category");
 
-            builder.Entity<LineItem>()
-                .HasKey(c => new { c.Id, c.ClaimId });
+            //builder.Entity<LineItem>()
+            //    .HasKey(c => new { c.Id, c.ClaimId });
 
             //All Decimals will have 18,6 Range
             foreach (var property in builder.Model.GetEntityTypes()

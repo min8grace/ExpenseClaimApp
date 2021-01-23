@@ -1,12 +1,8 @@
 ﻿using AutoMapper;
 using MediatR;
-using PointOfSales.Basic.Application.Features.Claims.Queries.GetAllClaims;
 using PointOfSales.Basic.Application.Interfaces.Repositories;
 using PointOfSales.Basic.Application.Wrappers;
-using PointOfSales.Basic.Domain.Entities;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -19,9 +15,9 @@ namespace PointOfSales.Basic.Application.Features.LineItems.Queries.GetAllLineIt
     }
     public class GetAllLineItemsQueryHandler : IRequestHandler<GetAllLineItemsQuery, PagedResponse<IEnumerable<GetAllLineItemsViewModel>>>
     {
-        private readonly IClaimRepositoryAsync _lineItemRepository;
+        private readonly ILineItemRepositoryAsync _lineItemRepository;
         private readonly IMapper _mapper;
-        public GetAllLineItemsQueryHandler(IClaimRepositoryAsync lineItemRepository, IMapper mapper)
+        public GetAllLineItemsQueryHandler(ILineItemRepositoryAsync lineItemRepository, IMapper mapper)
         {
             _lineItemRepository = lineItemRepository;
             _mapper = mapper;

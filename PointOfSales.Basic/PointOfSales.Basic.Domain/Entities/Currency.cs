@@ -8,9 +8,9 @@ namespace PointOfSales.Basic.Domain.Entities
     public class Currency
     {
         [Key]
-        public string Code { get; set; }
+        public string Code { get; set; } 
         public string Name { get; set; }
-        public string Symbol { get; set; }
+        public string Symbol { get; set; } 
 
         public ICollection<LineItem> ClaimLineItems { get; set; }
     }

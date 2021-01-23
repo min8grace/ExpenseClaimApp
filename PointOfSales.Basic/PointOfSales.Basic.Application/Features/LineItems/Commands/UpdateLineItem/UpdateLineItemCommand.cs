@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace PointOfSales.Basic.Application.Features.LineItems.Commands.UpdateLineItem
 {
+    
     public class UpdateLineItemCommand : IRequest<Response<int>>
     {
         public int Id { get; set; }

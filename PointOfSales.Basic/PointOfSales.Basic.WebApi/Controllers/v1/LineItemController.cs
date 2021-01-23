@@ -1,12 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using PointOfSales.Basic.Application.Features.Claims.Commands;
-using PointOfSales.Basic.Application.Features.Claims.Commands.CreateClaim;
-using PointOfSales.Basic.Application.Features.Claims.Commands.DeleteClaimById;
-using PointOfSales.Basic.Application.Features.Claims.Commands.UpdateClaim;
-using PointOfSales.Basic.Application.Features.Claims.Queries.GetAllClaims;
-using PointOfSales.Basic.Application.Features.Claims.Queries.GetClaimById;
 using PointOfSales.Basic.Application.Features.LineItem.Commands.CreateLineItem;
+using PointOfSales.Basic.Application.Features.LineItems.Commands.DeleteLineItemyId;
+using PointOfSales.Basic.Application.Features.LineItems.Commands.UpdateLineItem;
 using PointOfSales.Basic.Application.Features.LineItems.Queries.GetAllLineItems;
 using PointOfSales.Basic.Application.Features.LineItems.Queries.GetLineItemById;
 using PointOfSales.Basic.Application.Filters;

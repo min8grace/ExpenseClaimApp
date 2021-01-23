@@ -5,8 +5,9 @@ using System.Text;
 
 namespace PointOfSales.Basic.Domain.Entities
 {
-    public class Category : AuditableBaseEntity
+    public class Category 
     {
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Code { get; set; }
 

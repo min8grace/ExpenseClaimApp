@@ -13,10 +13,6 @@ namespace PointOfSales.Basic.Infrastructure.Persistence.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CreatedBy = table.Column<string>(nullable: true),
-                    Created = table.Column<DateTime>(nullable: false),
-                    LastModifiedBy = table.Column<string>(nullable: true),
-                    LastModified = table.Column<DateTime>(nullable: true),
                     Name = table.Column<string>(nullable: true),
                     Code = table.Column<string>(nullable: true)
                 },
@@ -66,28 +62,48 @@ namespace PointOfSales.Basic.Infrastructure.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Products",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CreatedBy = table.Column<string>(nullable: true),
+                    Created = table.Column<DateTime>(nullable: false),
+                    LastModifiedBy = table.Column<string>(nullable: true),
+                    LastModified = table.Column<DateTime>(nullable: true),
+                    Name = table.Column<string>(nullable: true),
+                    Barcode = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: true),
+                    Rate = table.Column<decimal>(type: "decimal(18,6)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Products", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "LineItem",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false),
-                    ClaimId = table.Column<int>(nullable: false),
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     CreatedBy = table.Column<string>(nullable: true),
                     Created = table.Column<DateTime>(nullable: false),
                     LastModifiedBy = table.Column<string>(nullable: true),
                     LastModified = table.Column<DateTime>(nullable: true),
                     Title = table.Column<string>(nullable: true),
+                    ClaimId = table.Column<int>(nullable: false),
                     CategoryId = table.Column<int>(nullable: false),
                     Payee = table.Column<string>(nullable: true),
                     Date = table.Column<DateTime>(nullable: false),
                     Description = table.Column<string>(nullable: true),
                     Amount = table.Column<decimal>(type: "decimal(18,6)", nullable: false),
                     CurrencyCode = table.Column<string>(nullable: true),
-                    USDAmount = table.Column<decimal>(type: "decimal(18,6)", nullable: false),
-                    Receipt = table.Column<byte[]>(nullable: true)
+                    USDAmount = table.Column<decimal>(type: "decimal(18,6)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_LineItem", x => new { x.Id, x.ClaimId });
+                    table.PrimaryKey("PK_LineItem", x => x.Id);
                     table.ForeignKey(
                         name: "FK_LineItem_Category_CategoryId",
                         column: x => x.CategoryId,
@@ -128,6 +144,9 @@ namespace PointOfSales.Basic.Infrastructure.Persistence.Migrations
         {
             migrationBuilder.DropTable(
                 name: "LineItem");
+
+            migrationBuilder.DropTable(
+                name: "Products");
 
             migrationBuilder.DropTable(
                 name: "Category");

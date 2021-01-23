@@ -10,7 +10,7 @@ using PointOfSales.Basic.Infrastructure.Persistence.Contexts;
 namespace PointOfSales.Basic.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210123074238_initial")]
+    [Migration("20210123202756_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -29,18 +29,6 @@ namespace PointOfSales.Basic.Infrastructure.Persistence.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Code")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Created")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("LastModified")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("LastModifiedBy")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -127,15 +115,17 @@ namespace PointOfSales.Basic.Infrastructure.Persistence.Migrations
             modelBuilder.Entity("PointOfSales.Basic.Domain.Entities.LineItem", b =>
                 {
                     b.Property<int>("Id")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ClaimId")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<decimal>("Amount")
                         .HasColumnType("decimal(18,6)");
 
                     b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ClaimId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("Created")
@@ -162,16 +152,13 @@ namespace PointOfSales.Basic.Infrastructure.Persistence.Migrations
                     b.Property<string>("Payee")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<byte[]>("Receipt")
-                        .HasColumnType("varbinary(max)");
-
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("USDAmount")
                         .HasColumnType("decimal(18,6)");
 
-                    b.HasKey("Id", "ClaimId");
+                    b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
 
@@ -220,19 +207,19 @@ namespace PointOfSales.Basic.Infrastructure.Persistence.Migrations
 
             modelBuilder.Entity("PointOfSales.Basic.Domain.Entities.LineItem", b =>
                 {
-                    b.HasOne("PointOfSales.Basic.Domain.Entities.Category", "Category")
+                    b.HasOne("PointOfSales.Basic.Domain.Entities.Category", null)
                         .WithMany("ClaimLineItems")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("PointOfSales.Basic.Domain.Entities.Claim", "Claim")
+                    b.HasOne("PointOfSales.Basic.Domain.Entities.Claim", null)
                         .WithMany("LineItems")
                         .HasForeignKey("ClaimId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("PointOfSales.Basic.Domain.Entities.Currency", "Currency")
+                    b.HasOne("PointOfSales.Basic.Domain.Entities.Currency", null)
                         .WithMany("ClaimLineItems")
                         .HasForeignKey("CurrencyCode");
                 });
