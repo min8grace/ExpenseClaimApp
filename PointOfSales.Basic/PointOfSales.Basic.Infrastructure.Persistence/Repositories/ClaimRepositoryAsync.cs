@@ -26,7 +26,7 @@ namespace PointOfSales.Basic.Infrastructure.Persistence.Repositories
         {
             IQueryable<Claim> claimsIQ = from x in _dbContext.Claims
                                          select x;
-            if(String.IsNullOrEmpty(searchString)){
+            if(!String.IsNullOrEmpty(searchString)){
 
                 claimsIQ = claimsIQ.Where(x => x.Title.Contains(searchString));
             }
