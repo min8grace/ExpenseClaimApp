@@ -49,8 +49,10 @@ namespace PointOfSales.Basic.Infrastructure.Persistence.Repositories
             //    .AsNoTracking()
             //    .FirstOrDefaultAsync(c=>c.Id == id);
 
-            return await _dbContext.Claims
-              .FindAsync(id);
+            //return await _dbContext.Claims
+            //  .FindAsync(id);
+
+            return temp;
 
         }
 

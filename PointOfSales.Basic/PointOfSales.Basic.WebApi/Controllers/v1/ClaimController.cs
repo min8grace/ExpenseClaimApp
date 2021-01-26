@@ -5,6 +5,7 @@ using PointOfSales.Basic.Application.Features.Claims.Commands.DeleteClaimById;
 using PointOfSales.Basic.Application.Features.Claims.Commands.UpdateClaim;
 using PointOfSales.Basic.Application.Features.Claims.Queries.GetAllClaims;
 using PointOfSales.Basic.Application.Features.Claims.Queries.GetClaimById;
+using PointOfSales.Basic.Application.Features.Claims.Queries.GetClaimsBySearch;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -28,9 +29,16 @@ namespace PointOfSales.Basic.WebApi.Controllers.v1
             //return Ok(await Mediator.Send(new GetAllClaimsQuery() { PageSize = filter.PageSize, PageNumber = filter.PageNumber }));
         }
 
+        //GET api/<controller>/5
+        //[HttpGet("{id}")]
+        //public async Task<IActionResult> Get(int id)
+        //{
+        //    return Ok(await Mediator.Send(new GetClaimByIdQuery { Id = id }));
+        //}
+
         // GET api/<controller>/5
-        [HttpGet("{id}")]
-        public async Task<IActionResult> Get(int id)
+        [HttpGet("{searchString}")]
+        public async Task<ActionResult<List<GetAllClaimsViewModel>>> GetBySearchString(string searchString)
         {
             return Ok(await Mediator.Send(new GetClaimByIdQuery { Id = id }));
         }
@@ -62,7 +70,5 @@ namespace PointOfSales.Basic.WebApi.Controllers.v1
         {
             return Ok(await Mediator.Send(new DeleteClaimByIdCommand { Id = id }));
         }
-
-
     }
 }

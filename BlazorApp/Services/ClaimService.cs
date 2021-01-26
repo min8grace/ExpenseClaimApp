@@ -26,13 +26,13 @@ namespace BlazorApp.Services
 
         public async  Task<List<GetAllClaimsViewModel>> GetClaims()
         {
-
             return await httpClient.GetJsonAsync<List<GetAllClaimsViewModel>>($"api/v{apiversion}/Claim");
         }
 
         public async Task<Claim> GetClaimById(int id)
         {
-            return await httpClient.GetJsonAsync<Claim>($"api/v{apiversion}/Claim");
+            var x = await httpClient.GetJsonAsync<Claim>($"api/v{apiversion}/Claim/{id}"); 
+            return x;
         }
 
         public Task<Claim> CreateClaim(Claim newClaim)

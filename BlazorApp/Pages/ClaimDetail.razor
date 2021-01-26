@@ -1,52 +1,63 @@
-﻿@page "/claimdetail/{id}"
+﻿@page "/claimdetail/{Id}"
 
 @inherits ClaimDetailBase
 
-<h1>ClaimDetail</h1>
 
-<div>
+@if (Claim == null || Claim.LineItems == null)
+{
 
-    <h4> Claim </h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            #Id
-        </dt>
-        <dd class="col-sm-10">
-            @Claim.Id
-        </dd>
-        <dt class="col-sm-2">
-            Title
-        </dt>
-        <dd class="col-sm-10">
-            @Claim.Title
-        </dd>
-        <dt class="col-sm-2">
-            Requester
-        </dt>
-        <dd class="col-sm-10">
-            @Claim.Requester
-        </dd>
-        <dt class="col-sm-2">
-            Approver
-        </dt>
-        <dd class="col-sm-10">
-            @Claim.Approver
-        </dd>
-        <dt class="col-sm-2">
-            Submit Date
-        </dt>
-        <dd class="col-sm-10">
-            @Claim.SubmitDate
-        </dd>
-        <dt class="col-sm-2">
-            Requester Comment
-        </dt>
-        <dd class="col-sm-10">
-            @Claim.RequesterComments
-        </dd>
-    </dl>
+    <div class="spinner"></div>
+}
+else
+{
 
-</div>
+    <h1>ClaimDetail</h1>
+
+    <div>
+
+        <h4> Claim </h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                #Id
+            </dt>
+            <dd class="col-sm-10">
+                @Claim.Id
+            </dd>
+            <dt class="col-sm-2">
+                Title
+            </dt>
+            <dd class="col-sm-10">
+                @Claim.Title
+            </dd>
+            <dt class="col-sm-2">
+                Requester
+            </dt>
+            <dd class="col-sm-10">
+                @Claim.Requester
+            </dd>
+            <dt class="col-sm-2">
+                Approver
+            </dt>
+            <dd class="col-sm-10">
+                @Claim.Approver
+            </dd>
+            <dt class="col-sm-2">
+                Submit Date
+            </dt>
+            <dd class="col-sm-10">
+                @Claim.SubmitDate
+            </dd>
+            <dt class="col-sm-2">
+                Requester Comment
+            </dt>
+            <dd class="col-sm-10">
+                @Claim.RequesterComments
+            </dd>
+        </dl>
+
+    </div>
+}
+
 
 
