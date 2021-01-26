@@ -26,7 +26,7 @@ namespace PointOfSales.Basic.Infrastructure.Persistence.Repositories
         {
             IQueryable<Claim> claimsIQ = from x in _dbContext.Claims
                                          select x;
-            if(String.IsNullOrEmpty(searchString)){
+            if(!String.IsNullOrEmpty(searchString)){
 
                 claimsIQ = claimsIQ.Where(x => x.Title.Contains(searchString));
             }
@@ -34,33 +34,14 @@ namespace PointOfSales.Basic.Infrastructure.Persistence.Repositories
 
         }
 
+
         public async Task<Claim> GetClaimById(int id)
         {
-
-            var tclaim = await _dbContext.Claims.FirstOrDefaultAsync(m => m.Id == id); ;
-
-            var temp = await _dbContext.Claims
+            return await _dbContext.Claims
                 .Include(c => c.LineItems)
                 .FirstOrDefaultAsync(c => c.Id == id);
 
-
-            //return await _dbContext.Claims
-            //    .Include(c=>c.LineItems)
-            //    .AsNoTracking()
-            //    .FirstOrDefaultAsync(c=>c.Id == id);
-
-            //return await _dbContext.Claims
-            //  .FindAsync(id);
-
-            return temp;
-
         }
 
-
-        //public Task<bool> IsUniqueBarcodeAsync(string barcode)
-        //{
-        //    return _products
-        //        .AllAsync(p => p.Barcode != barcode);
-        //}
     }
 }

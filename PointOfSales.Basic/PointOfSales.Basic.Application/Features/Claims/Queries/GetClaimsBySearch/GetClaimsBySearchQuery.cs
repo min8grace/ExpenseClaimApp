@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using PointOfSales.Basic.Application.Exceptions;
+using PointOfSales.Basic.Application.Features.Claims.Queries.GetAllClaims;
 using PointOfSales.Basic.Application.Interfaces.Repositories;
 using PointOfSales.Basic.Application.Wrappers;
 using PointOfSales.Basic.Domain.Entities;
@@ -10,24 +11,31 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace PointOfSales.Basic.Application.Features.Claims.Queries.GetClaimById
+namespace PointOfSales.Basic.Application.Features.Claims.Queries.GetClaimsBySearch
 {
-    public class GetClaimsBySearchQuery : IRequest<Response<Claim>>
+    public class GetClaimsBySearchQuery : IRequest<Response<IEnumerable<GetAllClaimsViewModel>>>
     {
-        public int Id { get; set; }
-        public class GetClaimsBySearchQueryHandler : IRequestHandler<GetClaimsBySearchQuery, Response<Claim>>
+        public string searchStr { get; set; }
+
+        public class GetClaimsBySearchQueryHandler : IRequestHandler<GetClaimsBySearchQuery, Response<IEnumerable<GetAllClaimsViewModel>>>
         {
             private readonly IClaimRepositoryAsync _claimRepository;
-            public GetClaimsBySearchQueryHandler(IClaimRepositoryAsync claimRepository)
+            private readonly IMapper _mapper;
+            public GetClaimsBySearchQueryHandler(IClaimRepositoryAsync claimRepository, IMapper mapper)
             {
                 _claimRepository = claimRepository;
+                _mapper = mapper;
             }
-            public async Task<Response<Claim>> Handle(GetClaimsBySearchQuery query, CancellationToken cancellationToken)
+
+            public async Task<Response<IEnumerable<GetAllClaimsViewModel>>> Handle(GetClaimsBySearchQuery request, CancellationToken cancellationToken)
             {
-                var claim = await _claimRepository.GetByIdAsync(query.Id);
-                if (claim == null) throw new ApiException($"Claim Not Found.");
-                return new Response<Claim>(claim);
+                var claim = await _claimRepository.GetClaimsBySearch(request.searchStr);
+                var claimViewModel = _mapper.Map<IEnumerable<GetAllClaimsViewModel>>(claim);
+                if (claimViewModel == null) throw new ApiException($"Claim Not Found.");
+                return new Response<IEnumerable<GetAllClaimsViewModel>>(claimViewModel);
+
             }
         }
     }
+
 }
