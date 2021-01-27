@@ -7,22 +7,26 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using PointOfSales.Basic.Application.Wrappers;
 using PointOfSales.Basic.Application.Features.Claims.Queries.GetAllClaims;
+using AutoMapper;
+using PointOfSales.Basic.Application.Features.Claims.Commands.UpdateClaim;
+using PointOfSales.Basic.Application.Features.Claims.Commands.CreateClaim;
 
 namespace BlazorApp.Services
 {
     public class ClaimService : IClaimService
     {
-
        
         private readonly HttpClient httpClient;
-
-        public ClaimService(HttpClient httpClient)
+        private readonly IMapper _mapper;
+        
+        public ClaimService(HttpClient httpClient, IMapper mapper)
         {
             this.httpClient = httpClient;
+            _mapper = mapper;
+
         }
 
         private const int apiversion = 1;
-
 
         public async  Task<List<GetAllClaimsViewModel>> GetClaims()
         {
@@ -31,23 +35,24 @@ namespace BlazorApp.Services
 
         public async Task<Claim> GetClaimById(int id)
         {
-            var x = await httpClient.GetJsonAsync<Claim>($"api/v{apiversion}/Claim/{id}"); 
-            return x;
+            return await httpClient.GetJsonAsync<Claim>($"api/v{apiversion}/Claim/{id}");          
         }
 
-        public Task<Claim> CreateClaim(Claim newClaim)
+        public async Task<Claim> CreateClaim(Claim newClaim)
         {
-            throw new NotImplementedException();
+            CreateClaimCommand createClaimCommand = _mapper.Map<CreateClaimCommand>(newClaim);
+            return await httpClient.PostJsonAsync<Claim>($"api/v{apiversion}/Claim", createClaimCommand);
         }
 
-        public Task<Claim> UpdateClaim(Claim updatedClaim)
+        public async Task<Claim> UpdateClaim(Claim updatedClaim)
         {
-            throw new NotImplementedException();
+            UpdateClaimCommand updateClaimCommand = _mapper.Map<UpdateClaimCommand>(updatedClaim);
+            return await httpClient.PutJsonAsync<Claim>($"api/v{apiversion}/Claim", updateClaimCommand);
         }
 
-        public Task DeleteClaim(int id)
+        public async Task DeleteClaim(int id)
         {
-            throw new NotImplementedException();
+            await httpClient.DeleteAsync($"api/v{apiversion}/Claim/{id}");
         }
 
         public Task<IReadOnlyList<Claim>> GetClaimsBySearch(string text)

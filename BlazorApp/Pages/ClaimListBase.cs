@@ -17,29 +17,20 @@ namespace BlazorApp.Pages
 
         public List<GetAllClaimsViewModel> Claims { get; set; }
 
-        //List<Claim> tempList = new List<Claim>();
+        [Inject]
+        public NavigationManager NavigationManager { get; set; }
 
-        //Claim temp = new Claim {
-
-        //    Id = 1,
-        //    Title = "title",
-        //    Requester = 10,
-        //    Approver = 10,
-        //    SubmitDate = new DateTime(1980, 10, 5),
-        //    ApprovalDate = new DateTime(1980, 10, 5),
-        //    ProcessedDate = new DateTime(1980, 10, 5),
-        //    TotalAmount = 20,
-        //    Status = "status",
-        //    RequesterComments = "requesterComments",
-        //    ApproverComments = "approverComments",
-        //    FinanceComments = "financeComments"
-        //};
-        
-
+        public int ClaimId { get; set; }
         protected override async Task OnInitializedAsync()
         {
 
             Claims = (await ClaimService.GetClaims()).ToList();
+        }
+
+        protected async Task Delete_Click()
+        {
+            await ClaimService.DeleteClaim(ClaimId);
+            NavigationManager.NavigateTo("/",true);
         }
     }
 }

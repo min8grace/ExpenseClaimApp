@@ -1,0 +1,230 @@
+﻿@page "/edit/{Id}"
+@page "/edit"
+
+@inherits ClaimEditBase
+
+<EditForm Model="@EditClaimModel" OnValidSubmit="HandleValidSubmit">
+    <ObjectGraphDataAnnotationsValidator />
+
+    <ValidationSummary />
+    <h3>Edit Claim</h3>
+    <hr />
+    <div class="form-group row">
+        <label for="title" class="col-sm-2 col-form-label">
+            Title
+        </label>
+        <div class="col-sm-10">
+            <InputText id="title" class="form-control" placeholder="Title" style="width:800px" @bind-Value="EditClaimModel.Title" />
+            <ValidationMessage For="@(()=> EditClaimModel.Title)" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="requester" class="col-sm-2 col-form-label">
+            Requester
+        </label>
+        <div class="col-sm-10">
+            <InputNumber id="requester" class="form-control" placeholder="Requester" style="width:800px" @bind-Value="EditClaimModel.Requester" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="Approver" class="col-sm-2 col-form-label">
+            Approver
+        </label>
+        <div class="col-sm-10">
+            <InputNumber id="Approver" class="form-control" placeholder="Approver" style="width:800px" @bind-Value="EditClaimModel.Approver" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="submitDate" class="col-sm-2 col-form-label">
+            Submit Date
+        </label>
+        <div class="col-sm-10">
+            <InputDate id="submitDate" class="form-control" placeholder="Submit Date" style="width:500px" @bind-Value="EditClaimModel.SubmitDate" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="approvalDate" class="col-sm-2 col-form-label">
+            Approval Date
+        </label>
+        <div class="col-sm-10">
+            <InputDate id="approvalDate" class="form-control" placeholder="Approval Date" style="width:500px" @bind-Value="EditClaimModel.ApprovalDate" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="processedDate" class="col-sm-2 col-form-label">
+            Processed Date
+        </label>
+        <div class="col-sm-10">
+            <InputDate id="processedDate" class="form-control" placeholder="Processed Date" style="width:500px" @bind-Value="EditClaimModel.ProcessedDate" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="totalAmount" class="col-sm-2 col-form-label">
+            Total Amount
+        </label>
+        <div class="col-sm-10">
+            <InputNumber id="totalAmount" class="form-control" placeholder="Total Amount" style="width:800px" @bind-Value="EditClaimModel.TotalAmount" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="status" class="col-sm-2 col-form-label">
+            Status
+        </label>
+        <div class="col-sm-10">
+            <InputSelect id="status" class="form-control" placeholder="Status" style="width:800px"  @bind-Value="EditClaimModel.Status">
+                @foreach (var status in Enum.GetValues(typeof(Status)))
+                {
+                    <option value="@status"> @status</option>}
+
+            </InputSelect>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="requesterComments" class="col-sm-2 col-form-label">
+            Requestor Comments
+        </label>
+        <div class="col-sm-8">
+            <textarea id="requesterComments" class="form-control" placeholder="Requestor Comments" style="width:800px"
+                      @bind-value="requesterComments" @bind-value:event="oninput"></textarea>
+        </div>
+        <div class="col-sm-2">
+            Count : @requesterComments.Length
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="approverComments" class="col-sm-2 col-form-label">
+            Approver Comments
+        </label>
+        <div class="col-sm-8">
+            <textarea id="approverComments" class="form-control" placeholder="Approver Comments" style="width:800px"
+                      @bind-value="approverComments" @bind-value:event="oninput"></textarea>
+        </div>
+        <div class="col-sm-2">
+            Count : @approverComments.Length
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="FinanceComments" class="col-sm-2 col-form-label">
+            Finance Comments
+        </label>
+        <div class="col-sm-8">
+            <textarea id="financeComments" class="form-control" placeholder="Finance Comments" style="width:800px"
+                      @bind-value="financeComments" @bind-value:event="oninput"></textarea>
+        </div>
+        <div class="col-sm-2">
+            Count : @financeComments.Length
+        </div>
+    </div>
+    <button class="btn btn-primary" type="submit">Submit</button>
+
+    @if (EditClaimModel.LineItems != null)
+    {
+        <h3>
+            Registered Line Items in the Claim
+        </h3>
+        <table class="table">
+            <tr>
+                <th>Id</th>
+                <th>ClaimId</th>
+                <th>CategoryId</th>
+                <th>Payee</th>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Amount</th>
+                <th>CurrencyCode</th>
+                <th>USDAmount</th>
+            </tr>
+            @foreach (var item in EditClaimModel.LineItems)
+            {
+                <tr>
+                    <td>
+                        @item.Id
+                    </td>
+                    <td>
+                        @item.ClaimId
+                    </td>
+                    <td>
+                        @item.CategoryId
+                    </td>
+                    <td>
+                        @item.Payee
+                    </td>
+                    <td>
+                        @item.Date
+                    </td>
+                    <td>
+                        @item.Description
+                    </td>
+                    <td>
+                        @item.Amount
+                    </td>
+                    <td>
+                        @item.CurrencyCode
+                    </td>
+                    <td>
+                        @item.USDAmount
+                    </td>
+                </tr>
+            }
+        </table>
+    }
+
+
+    @*<div class="form-group row">
+            <label for="category" class="col-sm-2 col-form-label">
+                Expense Category
+            </label>
+            <div class="col-sm-10">
+                <CustomInputSelect id="category" bind-Value="CategoryId" />
+                </CustomInputSelect>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="category" class="col-sm-2 col-form-label">
+                Expense Category
+            </label>
+            <div class="col-sm-10">
+                <InputSelect id="category" bind-Value="CategoryId" />
+                </InputSelect>
+            </div>
+        </div>*@
+</EditForm>
+@*<div class="form-group row">
+        <label for="category" class="col-sm-2 col-form-label">
+            Expense Category
+        </label>
+        <div class="col-sm-10">
+            <InputSelect id="category" bind-Value="CategoryId" />
+            </InputSelect>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="requesterComments" class="col-sm-2 col-form-label">
+            Requestor Comments
+        </label>
+        <div class="col-sm-10">
+            <InputText id="requesterComments" class="form-control" placeholder="Requestor Comments"
+                       @bind-Value="Claim.RequesterComments" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="totalAmount" class="col-sm-2 col-form-label">
+            Total Amount
+        </label>
+        <div class="col-sm-10">
+            <InputText id="totalAmount" class="form-control" placeholder="Total Amount"
+                       bind-Value="Claim.TotalAmount" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="requesterComments" class="col-sm-2 col-form-label">
+            Requestor Comments
+        </label>
+        <div class="col-sm-10">
+            <InputText id="requesterComments" class="form-control" placeholder="Requestor Comments"
+                       @bind-Value="Claim.RequesterComments" />
+        </div>
+    </div>*@
+
+

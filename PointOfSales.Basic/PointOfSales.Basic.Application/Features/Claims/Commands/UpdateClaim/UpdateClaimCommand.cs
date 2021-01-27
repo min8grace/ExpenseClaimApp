@@ -2,6 +2,7 @@
 using PointOfSales.Basic.Application.Exceptions;
 using PointOfSales.Basic.Application.Interfaces.Repositories;
 using PointOfSales.Basic.Application.Wrappers;
+using PointOfSales.Basic.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -19,7 +20,7 @@ namespace PointOfSales.Basic.Application.Features.Claims.Commands.UpdateClaim
         public DateTime SubmitDate { get; set; }
         public DateTime ApprovalDate { get; set; }
         public DateTime ProcessedDate { get; set; }
-        public int TotalAmount { get; set; }
+        public decimal TotalAmount { get; set; } = 300.5m;
         public string Status { get; set; }
         public string RequesterComments { get; set; }
         public string ApproverComments { get; set; }
@@ -46,6 +47,14 @@ namespace PointOfSales.Basic.Application.Features.Claims.Commands.UpdateClaim
                     claim.Title = command.Title;
                     claim.Requester = command.Requester;
                     claim.Approver = command.Approver;
+                    claim.SubmitDate = command.SubmitDate;
+                    claim.ApprovalDate = command.ApprovalDate;
+                    claim.ProcessedDate = command.ProcessedDate;
+                    claim.TotalAmount = command.TotalAmount;
+                    claim.Status = (Status)Enum.Parse(typeof(Status), command.Status); 
+                    claim.RequesterComments = command.RequesterComments;
+                    claim.ApproverComments = command.ApproverComments;
+                    claim.FinanceComments = command.FinanceComments;
                     await _claimRepository.UpdateAsync(claim);
                     return new Response<int>(claim.Id);
                 }

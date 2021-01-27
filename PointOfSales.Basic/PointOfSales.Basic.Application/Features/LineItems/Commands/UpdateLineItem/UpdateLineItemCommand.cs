@@ -49,8 +49,7 @@ namespace PointOfSales.Basic.Application.Features.LineItems.Commands.UpdateLineI
                     throw new ApiException($"Claim Not Found.");
                 }
                 else
-                {
-                    lineItem.Title = command.Title;
+                {                   
                     lineItem.Payee = command.Payee;
                     lineItem.Amount = command.Amount;
                     await _lineItemRepository.UpdateAsync(lineItem);

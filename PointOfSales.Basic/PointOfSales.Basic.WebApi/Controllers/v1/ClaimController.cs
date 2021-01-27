@@ -48,17 +48,17 @@ namespace PointOfSales.Basic.WebApi.Controllers.v1
         // POST api/<controller>
         [HttpPost]
         [Authorize]
-        public async Task<IActionResult> Post(CreateClaimCommand command)
+        public async Task<ActionResult<Claim>> Post(CreateClaimCommand command)
         {
             return Ok(await Mediator.Send(command));
         }
 
         // PUT api/<controller>/5
-        [HttpPut("{id}")]
+        [HttpPut()]
         [Authorize]
-        public async Task<IActionResult> Put(int id, UpdateClaimCommand command)
-        {
-            if (id != command.Id)
+        public async Task<ActionResult<Claim>> Put(UpdateClaimCommand command)
+        {            
+            if ((command.Id) == 0)
             {
                 return BadRequest();
             }
@@ -66,9 +66,9 @@ namespace PointOfSales.Basic.WebApi.Controllers.v1
         }
 
         // DELETE api/<controller>/5
-        [HttpDelete("{id}")]
+        [HttpDelete("{id:int}")]
         [Authorize]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<ActionResult<Claim>> Delete(int id)
         {
             return Ok(await Mediator.Send(new DeleteClaimByIdCommand { Id = id }));
         }

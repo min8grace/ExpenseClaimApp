@@ -5,10 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Blazor.HttpClient" Version="3.2.0-preview3.20168.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.DataAnnotations.Validation" Version="3.2.0-rc1.20223.4" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\GlobalUse.Components\GlobalUse.Components.csproj" />
     <ProjectReference Include="..\PointOfSales.Basic\PointOfSales.Basic.Application\PointOfSales.Basic.Application.csproj" />
     <ProjectReference Include="..\PointOfSales.Basic\PointOfSales.Basic.Domain\PointOfSales.Basic.Domain.csproj" />
   </ItemGroup>

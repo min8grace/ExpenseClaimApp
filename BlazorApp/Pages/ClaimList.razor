@@ -1,8 +1,6 @@
 ﻿@page "/"
 @inherits ClaimListBase
 
-
-
 <h3>ClaimList</h3>
 
 <table class="table">
@@ -27,19 +25,20 @@
         else
         {
             int cnt = 0;
+            int id = 0; 
             @foreach (var item in Claims)
             {
                 cnt++;
+                ClaimId = item.Id;
                 <tr>
                     <th scope="row">@cnt</th>
                     <td> @item.Title</td>
                     <td> @item.SubmitDate</td>
                     <td> @item.TotalAmount</td>
                     <td>
-                        <a href="@($"/")" class="btn btn-primary m-0">Edit</a>
-                        <a href="@($"claimdetail/{item.Id}")" class="btn btn-primary m-0">Detail</a>
-                        <a href="@($"/")" class="btn btn-primary h1 m-0">Delete</a>
-
+                        <a href="@($"/edit/{item.Id}")" class="btn btn-primary m-0">Edit</a>
+                        <a href="@($"/detail/{item.Id}")" class="btn btn-primary m-0">Detail</a>
+                        <a href="" class="btn btn-primary m-0" value="@ClaimId" @onclick="Delete_Click">Delete</a>
                     </td>
                 </tr>
             }

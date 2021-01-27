@@ -23,8 +23,7 @@ namespace BlazorApp.Pages
         protected override async Task OnInitializedAsync()
         {
             Id = Id ?? "1";
-            var k = await ClaimService.GetClaimById(int.Parse(Id));
-            Claim = k;
+            Claim = await ClaimService.GetClaimById(int.Parse(Id));
         }
     }
 }
