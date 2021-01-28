@@ -15,7 +15,6 @@ namespace PointOfSales.Basic.Application.Features.LineItems.Commands.UpdateLineI
     public class UpdateLineItemCommand : IRequest<Response<int>>
     {
         public int Id { get; set; }
-        public string Title { get; set; }
         public int ClaimId { get; set; }
         public int CategoryId { get; set; }
         public string Payee { get; set; }
@@ -26,11 +25,11 @@ namespace PointOfSales.Basic.Application.Features.LineItems.Commands.UpdateLineI
         public string CurrencyCode { get; set; }
         public Decimal USDAmount { get; set; }
 
-        public byte[] Receipt { get; set; }//image
+        //public byte[] Receipt { get; set; }//image
 
-        public virtual Claim Claim { get; set; }
-        public virtual Category Category { get; set; }
-        public virtual Currency Currency { get; set; }
+        //public virtual Claim Claim { get; set; }
+        //public virtual Category Category { get; set; }
+        //public virtual Currency Currency { get; set; }
 
 
         public class UpdateLineItemCommandHandler : IRequestHandler<UpdateLineItemCommand, Response<int>>
@@ -50,8 +49,15 @@ namespace PointOfSales.Basic.Application.Features.LineItems.Commands.UpdateLineI
                 }
                 else
                 {                   
+                    lineItem.ClaimId = command.ClaimId;
+                    lineItem.CategoryId = command.CategoryId;
                     lineItem.Payee = command.Payee;
+                    lineItem.Date = command.Date;
+                    lineItem.Description = command.Description;
                     lineItem.Amount = command.Amount;
+                    lineItem.CurrencyCode = command.CurrencyCode;
+                    lineItem.USDAmount = command.USDAmount;
+
                     await _lineItemRepository.UpdateAsync(lineItem);
                     return new Response<int>(lineItem.Id);
                 }

@@ -21,16 +21,29 @@ namespace BlazorApp.Pages
         public NavigationManager NavigationManager { get; set; }
 
         public int ClaimId { get; set; }
-        protected override async Task OnInitializedAsync()
-        {
 
-            Claims = (await ClaimService.GetClaims()).ToList();
-        }
-
+        protected GlobalUse.Components.ConfirmBase DeleteConfirmation { get; set; }
+        //protected void Delete_Click()
+        //{
+        //    DeleteConfirmation.Show();
+        //}
         protected async Task Delete_Click()
         {
             await ClaimService.DeleteClaim(ClaimId);
-            NavigationManager.NavigateTo("/",true);
+            NavigationManager.NavigateTo("/", true);
+        }
+        protected async Task ConfirmDelete_Click(bool deleteConfirmed)
+        {
+            if (deleteConfirmed)
+            {
+                await ClaimService.DeleteClaim(ClaimId);
+                NavigationManager.NavigateTo("/", true);
+            }
+        }
+
+        protected override async Task OnInitializedAsync()
+        {
+            Claims = (await ClaimService.GetClaims()).ToList();
         }
     }
 }

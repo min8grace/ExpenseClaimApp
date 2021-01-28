@@ -20,7 +20,6 @@ namespace PointOfSales.Basic.WebApi.Controllers.v1
         [HttpGet]
         public async Task<ActionResult<List<GetAllCurrenciesViewModel>>> Get([FromQuery] GetAllCurrenciesParameter filter)
         {
-
             var response = (await Mediator.Send(new GetAllCurrenciesQuery() { PageSize = filter.PageSize, PageNumber = filter.PageNumber })).Data;
 
             return response.ToList();

@@ -26,7 +26,7 @@ namespace BlazorApp
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddAutoMapper(typeof(ClaimProfile));
-
+            services.AddAutoMapper(typeof(LineItemProfile));
             services.AddHttpClient<IClaimService, ClaimService>(client =>
             {
                 client.BaseAddress = new Uri("https://localhost:44312/");
@@ -36,6 +36,10 @@ namespace BlazorApp
                 client.BaseAddress = new Uri("https://localhost:44312/");
             });
             services.AddHttpClient<ICurrencyService, CurrencyService>(client =>
+            {
+                client.BaseAddress = new Uri("https://localhost:44312/");
+            });
+            services.AddHttpClient<ILineItemService, LineItemService>(client =>
             {
                 client.BaseAddress = new Uri("https://localhost:44312/");
             });

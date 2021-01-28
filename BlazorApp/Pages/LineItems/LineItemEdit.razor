@@ -1,0 +1,99 @@
+﻿@page "/lineitem/edit/{Id}"
+@page "/lineitem/edit"
+
+@inherits LineItemEditBase
+
+<EditForm Model="@EditLineItemModel" OnValidSubmit="HandleValidSubmit">
+    <ObjectGraphDataAnnotationsValidator />
+
+    <ValidationSummary />
+    <h3>Edit LineItem</h3>
+    <hr />
+    <div class="form-group row">
+        <label for="claimId" class="col-sm-2 col-form-label">
+            ClaimId
+        </label>
+        <div class="col-sm-10">
+            <InputNumber id="claimId" class="form-control" placeholder="Title" style="width:800px" @bind-Value="EditLineItemModel.ClaimId" />
+            <ValidationMessage For="@(()=> EditLineItemModel.ClaimId)" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="categoryId" class="col-sm-2 col-form-label">
+            CategoryId
+        </label>
+        <div class="col-sm-10">
+            <InputSelect id="category" @bind-Value="CategoryId" class="form-control" style="width:800px">
+                @foreach (var cart in Categories)
+                {
+                    <option value="@cart.Id"> @cart.Name</option>
+                }
+            </InputSelect>
+            @*<InputNumber id="categoryId" class="form-control" placeholder="CategoryId" style="width:800px" @bind-Value="EditLineItemModel.CategoryId" />*@
+        
+        
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="payee" class="col-sm-2 col-form-label">
+            Payee
+        </label>
+        <div class="col-sm-10">
+            <InputText id="payee" class="form-control" placeholder="Payee" style="width:800px" @bind-Value="EditLineItemModel.Payee" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="date" class="col-sm-2 col-form-label">
+            Date
+        </label>
+        <div class="col-sm-10">
+            <InputDate id="date" class="form-control" placeholder="Date" style="width:500px" @bind-Value="EditLineItemModel.Date" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="description" class="col-sm-2 col-form-label">
+            Description
+        </label>
+        <div class="col-sm-8">
+            <textarea id="description" class="form-control" placeholder="Description" style="width:800px"
+                      @bind-value="Description" @bind-value:event="oninput"></textarea>
+        </div>
+        <div class="col-sm-2">
+            Count : @Description.Length
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="amount" class="col-sm-2 col-form-label">
+            Amount
+        </label>
+        <div class="col-sm-10">
+            <InputNumber id="amount" class="form-control" placeholder="Amount" style="width:800px" @bind-Value="EditLineItemModel.Amount" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="currencyCode" class="col-sm-2 col-form-label">
+            CurrencyCode
+        </label>
+        <div class="col-sm-10">
+            <InputSelect id="currency" @bind-Value="CurrencyId" class="form-control" style="width:800px">
+                @foreach (var curr in Currencies)
+                {
+                    <option value="@curr.Code"> @curr.Name</option>
+                }
+            </InputSelect>
+            @*<InputText id="currencyCode" class="form-control" placeholder="CurrencyCode" style="width:800px" @bind-Value="EditLineItemModel.CurrencyCode" />*@
+        </div>
+    </div>
+    
+    <div class="form-group row">
+        <label for="usdAmount" class="col-sm-2 col-form-label">
+            USD Amount
+        </label>
+        <div class="col-sm-10">
+            <InputNumber id="usdAmount" class="form-control" placeholder="USD Amount" style="width:800px" @bind-Value="EditLineItemModel.USDAmount" />
+        </div>
+    </div>
+
+    <button class="btn btn-primary" type="submit">Submit</button>
+
+</EditForm>

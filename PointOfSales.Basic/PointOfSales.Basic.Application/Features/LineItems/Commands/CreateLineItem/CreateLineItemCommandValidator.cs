@@ -20,10 +20,10 @@ namespace PointOfSales.Basic.Application.Features.LineItem.Commands.CreateLineIt
             //    .MaximumLength(50).WithMessage("{PropertyName} must not exceed 50 characters.")
             //    .MustAsync(IsUniqueBarcode).WithMessage("{PropertyName} already exists.");
 
-            RuleFor(p => p.Title)
-                .NotEmpty().WithMessage("{PropertyName} is required.")
-                .NotNull()
-                .MaximumLength(50).WithMessage("{PropertyName} must not exceed 50 characters.");
+            //RuleFor(p => p.Title)
+            //    .NotEmpty().WithMessage("{PropertyName} is required.")
+            //    .NotNull()
+            //    .MaximumLength(50).WithMessage("{PropertyName} must not exceed 50 characters.");
         }
 
         //private async Task<bool> IsUniqueBarcode(string barcode, CancellationToken cancellationToken)

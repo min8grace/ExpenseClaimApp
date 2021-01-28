@@ -1,0 +1,119 @@
+﻿@page "/lineitem/detail/{Id}"
+@inherits LineItemDetailBase
+
+
+@if (LineItem == null)
+{
+    <div class="spinner"></div>
+}
+else
+{
+    <h3> LineItem Detail</h3>
+
+    <h5>
+        Registered Line Items in the Claim #@LineItem.ClaimId
+    </h5>
+
+
+    <hr />
+    <div>
+
+        <dl class="row">
+            <dt class="col-sm-2">
+                Claim Id
+            </dt>
+            <dd class="col-sm-10">
+                @LineItem.ClaimId
+            </dd>
+            <dt class="col-sm-2">
+                CategoryId
+            </dt>
+            <dd class="col-sm-10">
+                @LineItem.CategoryId
+            </dd>
+            <dt class="col-sm-2">
+                Payee
+            </dt>
+            <dd class="col-sm-10">
+                @LineItem.Payee
+            </dd>
+            <dt class="col-sm-2">
+                Date
+            </dt>
+            <dd class="col-sm-10">
+                @LineItem.Date
+            </dd>
+            <dt class="col-sm-2">
+                Description
+            </dt>
+            <dd class="col-sm-10">
+                @LineItem.Description
+            </dd>
+            <dt class="col-sm-2">
+                Amount
+            </dt>
+            <dd class="col-sm-10">
+                @LineItem.Amount
+            </dd>
+            <dt class="col-sm-2">
+                CurrencyCode
+            </dt>
+            <dd class="col-sm-10">
+                @LineItem.CurrencyCode
+            </dd>
+            <dt class="col-sm-2">
+                USDAmount
+            </dt>
+            <dd class="col-sm-10">
+                @LineItem.USDAmount
+            </dd>
+        </dl>
+    </div>
+}
+
+
+
+@*<table class="table">
+        <tr>
+            <th>Id</th>
+            <th>ClaimId</th>
+            <th>CategoryId</th>
+            <th>Payee</th>
+            <th>Date</th>
+            <th>Description</th>
+            <th>Amount</th>
+            <th>CurrencyCode</th>
+            <th>USDAmount</th>
+        </tr>
+
+        <tr>
+            <td>
+                @LineItem.Id
+            </td>
+            <td>
+                @LineItem.ClaimId
+            </td>
+            <td>
+                @LineItem.CategoryId
+            </td>
+            <td>
+                @LineItem.Payee
+            </td>
+            <td>
+                @LineItem.Date
+            </td>
+            <td>
+                @LineItem.Description
+            </td>
+            <td>
+                @LineItem.Amount
+            </td>
+            <td>
+                @LineItem.CurrencyCode
+            </td>
+            <td>
+                @LineItem.USDAmount
+            </td>
+        </tr>
+
+    </table>*@

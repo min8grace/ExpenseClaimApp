@@ -20,7 +20,8 @@ namespace BlazorApp.Services
 
         public async Task<List<GetAllCurrenciesViewModel>> GetCurrencies()
         {
-            return await httpClient.GetJsonAsync<List<GetAllCurrenciesViewModel>>($"api/v{apiversion}/Currency");
+            var y = await httpClient.GetJsonAsync<List<GetAllCurrenciesViewModel>>($"api/v{apiversion}/Currency");
+            return y;
         }
 
         public async Task<Currency> GetCurrencyById(int id)
