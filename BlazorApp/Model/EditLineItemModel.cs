@@ -17,8 +17,8 @@ namespace BlazorApp.Model
         [MinLength(5)]
         public string Description { get; set; }
 
-        public Decimal Amount { get; set; } = 300.5m;
+        public Decimal Amount { get; set; } //= 300.5m;
         public string CurrencyCode { get; set; }
-        public Decimal USDAmount { get; set; } = 300.5m;
+        public Decimal USDAmount { get; set; } //= 300.5m;
     }
 }

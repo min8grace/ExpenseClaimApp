@@ -25,7 +25,7 @@ namespace PointOfSales.Basic.Domain.Entities
         public DateTime ProcessedDate { get; set; }
         [DataType(DataType.Currency)]
         [Column(TypeName = "money")]
-        public Decimal TotalAmount { get; set; } = 300.5m;
+        public Decimal TotalAmount { get; set; } //= 300.5m;
         public Status Status { get; set; }
         public string RequesterComments { get; set; }
         public string ApproverComments { get; set; }

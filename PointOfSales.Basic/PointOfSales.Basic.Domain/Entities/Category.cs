@@ -11,6 +11,6 @@ namespace PointOfSales.Basic.Domain.Entities
         public string Name { get; set; }
         public string Code { get; set; }
 
-        public ICollection<LineItem> ClaimLineItems { get; set; }
+        public ICollection<LineItem> LineItems { get; set; }
     }
 }

@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
+
 namespace PointOfSales.Basic.WebApi.Controllers.v1
 {
     [AllowAnonymous]
@@ -34,7 +35,7 @@ namespace PointOfSales.Basic.WebApi.Controllers.v1
         [HttpGet("{id:int}")]
         public async Task<ActionResult<Claim>> Get(int id)
         {
-            var response = (await Mediator.Send(new GetClaimByIdQuery { Id = id })).Data;
+            Claim response = (await Mediator.Send(new GetClaimByIdQuery { Id = id })).Data;
             return response;
         }
 

@@ -13,8 +13,7 @@ namespace BlazorApp.Model
     public class ClaimProfile : Profile
     {
         public ClaimProfile()
-        {
-            
+        {            
             CreateMap<Claim, EditClaimModel>();
             CreateMap<EditClaimModel, Claim>();
             CreateMap<Claim, UpdateClaimCommand>();

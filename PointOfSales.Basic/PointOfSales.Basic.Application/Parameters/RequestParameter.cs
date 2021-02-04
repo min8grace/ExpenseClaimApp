@@ -11,12 +11,12 @@ namespace PointOfSales.Basic.Application.Filters
         public RequestParameter()
         {
             this.PageNumber = 1;
-            this.PageSize = 10;
+            this.PageSize = 10000;
         }
         public RequestParameter(int pageNumber, int pageSize)
         {
             this.PageNumber = pageNumber < 1 ? 1 : pageNumber;
-            this.PageSize = pageSize > 10 ? 10 : pageSize;
+            this.PageSize = pageSize > 10000 ? 10000 : pageSize;
         }
     }
 }

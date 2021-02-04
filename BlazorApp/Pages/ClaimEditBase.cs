@@ -28,9 +28,9 @@ namespace BlazorApp.Pages
         public List<GetAllCategoriesViewModel> Categories { get; set; } = new List<GetAllCategoriesViewModel>();
         public string CategoryId { get; set; }
 
-        public string requesterComments { get; set; } = string.Empty;
-        public string approverComments { get; set; } = string.Empty;
-        public string financeComments { get; set; } = string.Empty;
+        public string RequesterComments { get; set; } = string.Empty;
+        public string ApproverComments { get; set; } = string.Empty;
+        public string FinanceComments { get; set; } = string.Empty;
 
 
         [Parameter]
@@ -43,27 +43,21 @@ namespace BlazorApp.Pages
         {
             //Id = Id ?? "1";
             int.TryParse(Id, out int claimId);
-            if (claimId != 0)
-            {
-                //PageHeader = "Edit Claim";
+            if (claimId != 0)// for Edit
+            {                
                 Claim = (await ClaimService.GetClaimById(int.Parse(Id)));
                 Mapper.Map(Claim, EditClaimModel);
 
-               
-                requesterComments = EditClaimModel.RequesterComments;
-                approverComments = EditClaimModel.ApproverComments;
-                financeComments = EditClaimModel.FinanceComments;
+
+                RequesterComments = EditClaimModel.RequesterComments;
+                ApproverComments = EditClaimModel.ApproverComments;
+                FinanceComments = EditClaimModel.FinanceComments;
             }
-            else
+            else // for Create
             {
-                //PageHeader = "Create Claim";
-                Claim = new Claim
+                EditClaimModel = new EditClaimModel
                 {
-                    //LineItems Id = 1,
                     SubmitDate = DateTime.Now,
-                    RequesterComments = " ",
-                    ApproverComments = " ",
-                    FinanceComments = " ",
                     Status = (Status)Enum.Parse(typeof(Status), "Requested")
                 };
             }

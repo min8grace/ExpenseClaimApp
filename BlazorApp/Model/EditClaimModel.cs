@@ -18,11 +18,11 @@ namespace BlazorApp.Model
         public DateTime SubmitDate { get; set; }
         public DateTime ApprovalDate { get; set; }
         public DateTime ProcessedDate { get; set; }
-        public Decimal TotalAmount { get; set; } = 300.5m;
+        public Decimal TotalAmount { get; set; } //= 300.5m;
         public Status Status { get; set; }
-        public string RequesterComments { get; set; }
-        public string ApproverComments { get; set; }
-        public string FinanceComments { get; set; }
+        public string RequesterComments { get; set; } = string.Empty;
+        public string ApproverComments { get; set; } = string.Empty;
+        public string FinanceComments { get; set; } = string.Empty;
 
         [ValidateComplexType]
         public virtual ICollection<LineItem> LineItems { get; set; } = new Collection<LineItem>();
