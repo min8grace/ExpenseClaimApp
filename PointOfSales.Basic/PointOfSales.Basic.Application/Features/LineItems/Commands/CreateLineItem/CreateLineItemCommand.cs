@@ -13,7 +13,6 @@ namespace PointOfSales.Basic.Application.Features.LineItem.Commands.CreateLineIt
 {
     public class CreateLineItemCommand : IRequest<Response<int>>
     {
-        public string Title { get; set; }
         public int ClaimId { get; set; }
         public int CategoryId { get; set; }
         public string Payee { get; set; }

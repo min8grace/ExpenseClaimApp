@@ -6,6 +6,7 @@ using PointOfSales.Basic.Application.Features.LineItems.Commands.UpdateLineItem;
 using PointOfSales.Basic.Application.Features.LineItems.Queries.GetAllLineItems;
 using PointOfSales.Basic.Application.Features.LineItems.Queries.GetLineItemById;
 using PointOfSales.Basic.Application.Filters;
+using PointOfSales.Basic.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,36 +32,45 @@ namespace PointOfSales.Basic.WebApi.Controllers.v1
         }
 
         // GET api/<controller>/5
-        [HttpGet("{id}")]
-        public async Task<IActionResult> Get(int id)
+        [HttpGet("{id:int}")]
+        public async Task<ActionResult<LineItem>> Get(int id)
         {
-            return Ok(await Mediator.Send(new GetLineItemByIdQuery { Id = id }));
+            var response = (await Mediator.Send(new GetLineItemByIdQuery { Id = id })).Data;
+            return response;
         }
+
+        // GET api/<controller>/5
+        //[HttpGet("{searchStr}")]
+        //public async Task<ActionResult<List<GetAllClaimsViewModel>>> GetBySearchString(string searchStr)
+        //{
+        //    return Ok(await Mediator.Send(new GetClaimsBySearchQuery { searchStr = searchStr }));
+        //}
+
 
         // POST api/<controller>
         [HttpPost]
         [Authorize]
-        public async Task<IActionResult> Post(CreateLineItemCommand command)
+        public async Task<ActionResult<LineItem>> Post(CreateLineItemCommand command)
         {
             return Ok(await Mediator.Send(command));
         }
 
         // PUT api/<controller>/5
-        [HttpPut("{id}")]
+        [HttpPut()]
         [Authorize]
-        public async Task<IActionResult> Put(int id, UpdateLineItemCommand command)
+        public async Task<ActionResult<LineItem>> Put(UpdateLineItemCommand command)
         {
-            if (id != command.Id)
-            {
-                return BadRequest();
-            }
+            //if (id != command.Id)
+            //{
+            //    return BadRequest();
+            //}
             return Ok(await Mediator.Send(command));
         }
 
         // DELETE api/<controller>/5
-        [HttpDelete("{id}")]
+        [HttpDelete("{id:int}")]
         [Authorize]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<ActionResult<LineItem>> Delete(int id)
         {
             return Ok(await Mediator.Send(new DeleteLineItemByIdCommand { Id = id }));
         }

@@ -1,3 +1,5 @@
+using AutoMapper;
+using BlazorApp.Model;
 using BlazorApp.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -23,12 +25,24 @@ namespace BlazorApp
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
+            services.AddAutoMapper(typeof(ClaimProfile));
+            services.AddAutoMapper(typeof(LineItemProfile));
             services.AddHttpClient<IClaimService, ClaimService>(client =>
             {
-
                 client.BaseAddress = new Uri("https://localhost:44312/");
             });
-
+            services.AddHttpClient<ICategoryService, CategoryService>(client =>
+            {
+                client.BaseAddress = new Uri("https://localhost:44312/");
+            });
+            services.AddHttpClient<ICurrencyService, CurrencyService>(client =>
+            {
+                client.BaseAddress = new Uri("https://localhost:44312/");
+            });
+            services.AddHttpClient<ILineItemService, LineItemService>(client =>
+            {
+                client.BaseAddress = new Uri("https://localhost:44312/");
+            });
             //services.AddSingleton<WeatherForecastService>();
         }
 

@@ -18,10 +18,10 @@ namespace PointOfSales.Basic.Application.Features.LineItems.Queries.GetAllLineIt
         public string CurrencyCode { get; set; }
         public Decimal USDAmount { get; set; }
 
-        public byte[] Receipt { get; set; }//image
+        //public byte[] Receipt { get; set; }//image
 
-        public virtual Claim Claim { get; set; }
-        public virtual Category Category { get; set; }
-        public virtual Currency Currency { get; set; }
+        //public virtual Claim Claim { get; set; }
+        //public virtual Category Category { get; set; }
+        //public virtual Currency Currency { get; set; }
     }
 }

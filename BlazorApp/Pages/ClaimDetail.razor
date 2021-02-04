@@ -1,52 +1,155 @@
-﻿@page "/claimdetail/{id}"
-
+﻿@page "/detail/{Id}"
 @inherits ClaimDetailBase
 
-<h1>ClaimDetail</h1>
 
-<div>
+@if (Claim == null || Claim.LineItems == null)
+{
 
-    <h4> Claim </h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            #Id
-        </dt>
-        <dd class="col-sm-10">
-            @Claim.Id
-        </dd>
-        <dt class="col-sm-2">
-            Title
-        </dt>
-        <dd class="col-sm-10">
-            @Claim.Title
-        </dd>
-        <dt class="col-sm-2">
-            Requester
-        </dt>
-        <dd class="col-sm-10">
-            @Claim.Requester
-        </dd>
-        <dt class="col-sm-2">
-            Approver
-        </dt>
-        <dd class="col-sm-10">
-            @Claim.Approver
-        </dd>
-        <dt class="col-sm-2">
-            Submit Date
-        </dt>
-        <dd class="col-sm-10">
-            @Claim.SubmitDate
-        </dd>
-        <dt class="col-sm-2">
-            Requester Comment
-        </dt>
-        <dd class="col-sm-10">
-            @Claim.RequesterComments
-        </dd>
-    </dl>
+    <div class="spinner"></div>
+}
+else
+{
 
-</div>
+    <h1>ClaimDetail</h1>
+    <div>
+        <h4> Claim </h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                #Id
+            </dt>
+            <dd class="col-sm-10">
+                @Claim.Id
+            </dd>
+            <dt class="col-sm-2">
+                Title
+            </dt>
+            <dd class="col-sm-10">
+                @Claim.Title
+            </dd>
+            <dt class="col-sm-2">
+                Requester
+            </dt>
+            <dd class="col-sm-10">
+                @Claim.Requester
+            </dd>
+            <dt class="col-sm-2">
+                Approver
+            </dt>
+            <dd class="col-sm-10">
+                @Claim.Approver
+            </dd>
+            <dt class="col-sm-2">
+                Submit Date
+            </dt>
+            <dd class="col-sm-10">
+                @Claim.SubmitDate
+            </dd>
+            <dt class="col-sm-2">
+                Approval Date
+            </dt>
+            <dd class="col-sm-10">
+                @Claim.ApprovalDate
+            </dd>
+            <dt class="col-sm-2">
+                Processed Date
+            </dt>
+            <dd class="col-sm-10">
+                @Claim.ProcessedDate
+            </dd>
+            <dt class="col-sm-2">
+                Total Amount
+            </dt>
+            <dd class="col-sm-10">
+                @Claim.TotalAmount
+            </dd>
+            <dt class="col-sm-2">
+                Requester Comment
+            </dt>
+            <dd class="col-sm-10">
+                @Claim.RequesterComments
+            </dd>
+            <dt class="col-sm-2">
+                Approver Comment
+            </dt>
+            <dd class="col-sm-10">
+                @Claim.ApproverComments
+            </dd>
+            <dt class="col-sm-2">
+                Finance Comment
+            </dt>
+            <dd class="col-sm-10">
+                @Claim.FinanceComments
+            </dd>
+        </dl>
+
+    </div>
+    @if (Claim.LineItems != null)
+    {
+        <h3>
+            Registered Line Items in the Claim
+        </h3>
+        <table class="table">
+            <tr>
+                <th>Id</th>
+                <th>ClaimId</th>
+                <th>CategoryId</th>
+                <th>Payee</th>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Amount</th>
+                <th>CurrencyCode</th>
+                <th>USDAmount</th>
+                <th>         </th>
+            </tr>
+            @foreach (var item in Claim.LineItems)
+            {
+
+        <tr>
+
+            <td>
+                @item.Id
+            </td>
+            <td>
+                @item.ClaimId
+            </td>
+            <td>
+                @item.CategoryId
+            </td>
+            <td>
+                @item.Payee
+            </td>
+            <td>
+                @item.Date
+            </td>
+            <td>
+                @item.Description
+            </td>
+            <td>
+                @item.Amount
+            </td>
+            <td>
+                @item.CurrencyCode
+            </td>
+            <td>
+                @item.USDAmount
+            </td>
+            <td>
+                <a href="@($"lineitem/edit/{item.Id}")" class="btn btn-primary m-0">Edit</a>
+                <a href="@($"lineitem/detail/{item.Id}")" class="btn btn-primary m-0">Detail</a>
+                <a href="/" class="btn btn-primary m-0">Delete</a>
+                @*<a href="#" class="btn btn-primary m-0" value="@item.ClaimId" @onclick="Delete_Click">Delete</a>*@
+                @*<button class="btn btn-danger" type="button" value="@ClaimId" @onclick="Delete_Click">
+            Delete
+        </button>*@
+            </td>
+
+        </tr>
+
+            }
+        </table>
+    }
+}
+
 
 
